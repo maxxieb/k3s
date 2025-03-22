@@ -75,7 +75,7 @@ state = {{ printf "%q" .NodeConfig.Containerd.State }}
 {{- if .NodeConfig.AgentConfig.Snapshotter }}
 [plugins."io.containerd.grpc.v1.cri".containerd]
   snapshotter = "{{ .NodeConfig.AgentConfig.Snapshotter }}"
-  disable_snapshot_annotations = {{ if eq .NodeConfig.AgentConfig.Snapshotter "stargz" }}false{{else}}true{{end}}
+  disable_snapshot_annotations = {{ if or (eq .NodeConfig.AgentConfig.Snapshotter "stargz") (eq .NodeConfig.AgentConfig.Snapshotter "nix") }}false{{else}}true{{end}}
   {{ if .NodeConfig.DefaultRuntime }}default_runtime_name = "{{ .NodeConfig.DefaultRuntime }}"{{end}}
 {{ if eq .NodeConfig.AgentConfig.Snapshotter "stargz" }}
 {{ if .NodeConfig.AgentConfig.ImageServiceSocket }}

@@ -124,3 +124,7 @@ func FuseoverlayfsSupported(root string) error {
 func StargzSupported(root string) error {
 	return stargz.Supported(root)
 }
+
+func NixSupported(root string) error {
+	return stargz.Supported(root)
+}
